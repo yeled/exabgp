@@ -317,11 +317,12 @@ def loop(options):
                 command = "announce" if target is states.UP else "withdraw"
             else:
                 command = "announce"
-            announce = "route {0}/{1} next-hop {2}".format(str(ip),
-                                                           ip.max_prefixlen,
-                                                           options.next_hop or "self")
+            announce = "route {0}/{1}".format(str(ip),
+                                              ip.max_prefixlen)
             if command == "announce":
-                announce = "{0} med {1}".format(announce, metric)
+                announce = "{0} next-hop {1} med {2}".format(announce,
+                                                             options.next_hop or "self",
+                                                             metric)
             if options.community:
                 announce = "{0} community [ {1} ]".format(announce,
                                                           options.community)
