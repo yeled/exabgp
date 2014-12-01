@@ -323,9 +323,9 @@ def loop(options):
                 announce = "{0} next-hop {1} med {2}".format(announce,
                                                              options.next_hop or "self",
                                                              metric)
-            if options.community:
-                announce = "{0} community [ {1} ]".format(announce,
-                                                          options.community)
+                if options.community:
+                    announce = "{0} community [ {1} ]".format(announce,
+                                                              options.community)
             logger.debug("exabgp: {0} {1}".format(command, announce))
             print("{0} {1}".format(command, announce))
             metric += options.increase
